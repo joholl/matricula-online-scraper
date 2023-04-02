@@ -45,6 +45,10 @@ def download_archive(url, file_range, output_directory):
     download.fetch_record_page()
     download.download_files()
 
+def download_all_archives(url, file_range, output_directory):
+    download = Downloader(url, file_range, output_directory)
+    download.fetch_registers_page_and_download_all()
+
 def download_archives_from_list(urls_file_path, file_range, output_directory):
     with open(urls_file_path) as f:
         urls = f.read().splitlines()
@@ -57,7 +61,10 @@ if __name__ == "__main__":
     output_directory = args.output_directory
 
     if args.url is not None:
-        download_archive(args.url, args.range, output_directory)
+        if Downloader.is_registers_url(args.url):
+            download_all_archives(args.url, args.range, output_directory)
+        else:
+            download_archive(args.url, args.range, output_directory)
     else:
         verify_archive_list_exists(args.text_file)
         download_archives_from_list(args.text_file, args.range, output_directory)

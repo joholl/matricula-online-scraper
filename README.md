@@ -19,6 +19,10 @@ To Download a Single Archive:
 ```bash
 python main.py -o ./images -u https://data.matricula-online.eu/en/deutschland/akmb/militaerkirchenbuecher/0001
 ```
+To Download all of Archives from a Place:
+```bash
+python main.py -o ./images -u https://data.matricula-online.eu/en/deutschland/akmb/militaerkirchenbuecher
+```
 To Download a List of Archive URLs from a File:
 ```bash
 python main.py -o ./images -t ./urls.txt
